@@ -13,6 +13,7 @@ public class MergeLinkedListTest {
         int[] nums2 = {1,3,4};
         l1 = l1.add(nums1,l1);
         l2 = l2.add(nums2,l2);
+        //查看链表内容
         System.out.println(l1);
         System.out.println(l2);
 
