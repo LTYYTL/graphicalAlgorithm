@@ -32,6 +32,7 @@ public class ClimbStairs {
      * @return
      */
     public int climbStairs(int n) {
+        //索引从0开始
         int[] res = new int[n+1];
         res[0] = 1;
         res[1] = 1;
