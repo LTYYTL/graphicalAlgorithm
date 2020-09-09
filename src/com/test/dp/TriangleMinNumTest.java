@@ -32,10 +32,11 @@ public class TriangleMinNumTest {
         res.add(list2);
         res.add(list3);
         res.add(list4);
-
+        //查看是否为想要的数据
         System.out.println(res.toString());
-
+        //方法一：动态规划
         System.out.println(triangleMinNum.minimumTotal(res));
+        //方法二：动态规划 + 空间优化（一维数组）
         System.out.println(triangleMinNum.minimumTotal_structure(res));
 
 
