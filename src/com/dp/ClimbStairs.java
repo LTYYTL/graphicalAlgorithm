@@ -23,19 +23,23 @@ package com.dp;
  */
 public class ClimbStairs {
     /**
+     * 方法：动态规划
+     *
      * 上 1 阶台阶：有1种方式。
      * 上 2 阶台阶：有1+1和2两种方式。
      * 上 3 阶台阶：到达第3阶的方法总数就是到第1阶和第2阶的方法数之和。
      * 上 n 阶台阶，到达第n阶的方法总数就是到第 (n-1) 阶和第 (n-2) 阶的方法数之和。
      * 状态方程：dp[n] = dp[n-1] + dp[n-2]
+     *
      * @param n 阶数
-     * @return
+     * @return 方案数
      */
     public int climbStairs(int n) {
         //索引从0开始
         int[] res = new int[n+1];
         res[0] = 1;
         res[1] = 1;
+        //计算dp[i]
         for (int i = 2; i <= n;i++){
             res[i] = res[i - 1] + res[i -2];
         }

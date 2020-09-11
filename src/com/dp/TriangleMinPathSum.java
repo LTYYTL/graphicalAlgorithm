@@ -19,7 +19,7 @@ import java.util.List;
  * 说明：
  * 如果你可以只使用 O(n) 的额外空间（n 为三角形的总行数）来解决这个问题，那么你的算法会很加分。
  */
-public class TriangleMinNum {
+public class TriangleMinPathSum {
     /**
      * 方法一：动态规划
      * 时间复杂度：O(n^2),其中 nn 是三角形的行数。

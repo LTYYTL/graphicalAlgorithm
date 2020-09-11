@@ -11,7 +11,24 @@ package com.linkedList;
  * 输出：7 -> 0 -> 8
  * 原因：342 + 465 = 807
  */
-public class TwoNumSum {
+public class TwoNumAdd {
+    /**
+     * 伪代码如下：
+     * 将进位 temp 初始化为 0。
+     * 遍历列表 l1 和 l2 直至到达它们的尾端。
+     * 将 temp_l1 设为结点 l1 的值。如果已经到达 l1 的末尾，则将其值设置为 0。
+     * 将 temp_l2 设为结点 l2 的值。如果已经到达 l2 的末尾，则将其值设置为 0。
+     * 设定 sum = temp_l1 + temp_l2 + temp。
+     * 更新进位的值，carry = sum / 10
+     * 创建一个数值为 (sum% 10)的新结点，并将其设置为当前结点的下一个结点，然后将当前结点前进到下一个结点。
+     * 同时，将 l1 和 l2 前进到下一个结点。
+     * 检查 temp = 1 是否成立，如果成立，则向返回列表追加一个含有数字 1 的新结点。
+     * 返回哨兵结点的下一个结点。
+     *
+     * @param l1 链表1
+     * @param l2 链表2
+     * @return 和的链表
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         //哨兵节点
         ListNode res = new ListNode(-1);
@@ -25,11 +42,11 @@ public class TwoNumSum {
             int temp_l2 = l2 == null ? 0 :l2.val;
             //计算和
             temp = temp_l1 + temp_l2 + temp;
-            //和的个i位数节点
+            //和的个位数节点
             ListNode node = new ListNode(temp%10);
             //进位
             temp = temp/10;
-
+            //向后移动
             pre.next = node;
             pre = pre.next;
             //当链表不为空，才向后移动
@@ -39,7 +56,7 @@ public class TwoNumSum {
             if (l2 != null)
                 l2 = l2.next;
         }
-
+        //要去除哨兵节点
         return res.next;
     }
 }

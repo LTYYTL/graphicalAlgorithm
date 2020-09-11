@@ -28,11 +28,33 @@ package com.array;
  * 1 <= prices.length <= 3 * 10 ^ 4
  * 0 <= prices[i] <= 10 ^ 4
  */
-public class Stock {
+public class StockII {
+    /**
+     * 方法：贪心算法
+     * @param prices 股票价格数组
+     * @return 最大收益
+     */
     public int maxProfit(int[] prices) {
+        //最大收益
        int max = 0;
+       //遍历股票价格数组
        for (int i = 1; i < prices.length ; i++){
+           //当今天价格比昨天价格高的时候，即是低买高出，获得收益
+           //例：[1,2,3,4,5]
+           //①prices[1]>prices[0](2>1),max = 1
+           //②prices[2]>prices[1](3>2),max = 2
+           //③prices[3]>prices[2](4>3),max = 3
+           //④prices[4]>prices[3](5>4),max = 4
+           //即：prices[4]-prices[0],max = 4(连续的增加可看作是最高与最低的差)
+           //
+           //例：[7,1,5,3,6,4]
+           //①prices[1]<prices[0](1<7),max = 0
+           //②prices[2]>prices[1](5>1),max = 5-1=4
+           //③prices[3]<prices[2](5>3),max = 4
+           //④prices[4]>prices[3](6>3),max = 7
+           //④prices[5]<prices[4](6>4),max = 7
            if (prices[i]>prices[i-1]){
+               //最大利益
                max += prices[i] - prices[i-1];
            }
        }

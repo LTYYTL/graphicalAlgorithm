@@ -19,20 +19,33 @@ import java.util.Arrays;
  * 解释: 输入数组表示数字 4321。
  */
 public class AddOne {
-    //1、普通情况，除9之外的数字加1。
-    //2、特殊情况，9加1。（因为9加1需要进位）
+
+
+    /**
+     * 方法：数学问题
+     * 1、普通情况，除9之外的数字加1。
+     * 2、特殊情况，9加1。（因为9加1需要进位）
+     *
+     * @param digits 数字
+     * @return
+     */
     public int[] plusOne(int[] digits) {
+        //数组长度
         int len = digits.length;
+        //个位在后，从后向前遍历
+        //在个位不为9的时候只会循环一次
         for(int i = len - 1; i >= 0; i--) {
+            //此位加一
             digits[i]++;
+            //目的是在此位加1后会变成10，取余此位加一后直接变为0
             digits[i] %= 10;
+            //在此位加1后不为0，就不会再往前进位，即加法结束
             if(digits[i]!=0)
                 return digits;
         }
-        //各个位都是0，最高位赋1
+        //数字的各个为在加1之前都为9,加1后各个位都是0，最高位直接赋1
         digits = new int[len + 1];
         digits[0] = 1;
-        System.out.println(Arrays.toString(digits));
         return digits;
     }
 }

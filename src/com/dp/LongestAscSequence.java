@@ -16,6 +16,8 @@ package com.dp;
  */
 public class LongestAscSequence {
     /**
+     * 方法：动态规划
+     *
      * 1、如果nums[i]比前面的所有元素都小，那么dp[i]等于1（即它本身）（该结论正确）
      * 2、如果nums[i]前面存在比他小的元素nums[j]，那么dp[i]就等于dp[j]+1（该结论错误，比如nums[3]>nums[0]，即9>1,但是dp[3]并不等于dp[0]+1）
      * dp[i] = max(dp[j]+1，dp[k]+1，dp[p]+1，.....)
@@ -42,6 +44,7 @@ public class LongestAscSequence {
                     temp = Math.max(temp , dp[j]);
                 }
             }
+            //最大长度加上自己本身
             dp[i] = temp + 1;
             longest = Math.max(longest , dp[i]);
         }

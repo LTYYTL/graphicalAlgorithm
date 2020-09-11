@@ -1,13 +1,23 @@
 package com.test.dp;
 
-import com.dp.TriangleMinNum;
+import com.dp.TriangleMinPathSum;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TriangleMinNumTest {
+public class TriangleMinPathSumTest {
     public static void main(String[] args) {
-        TriangleMinNum triangleMinNum = new TriangleMinNum();
+        TriangleMinPathSum triangleMinPathSum = new TriangleMinPathSum();
+        /**
+         * 例如，给定三角形：
+         * [
+         *      [2],
+         *     [3,4],
+         *    [6,5,7],
+         *   [4,1,8,3]
+         * ]
+         * 自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
+         */
 
         List<Integer> list1 = new ArrayList<>();
         list1.add(2);
@@ -35,9 +45,9 @@ public class TriangleMinNumTest {
         //查看是否为想要的数据
         System.out.println(res.toString());
         //方法一：动态规划
-        System.out.println(triangleMinNum.minimumTotal(res));
+        System.out.println(triangleMinPathSum.minimumTotal(res));
         //方法二：动态规划 + 空间优化（一维数组）
-        System.out.println(triangleMinNum.minimumTotal_structure(res));
+        System.out.println(triangleMinPathSum.minimumTotal_structure(res));
 
 
     }
