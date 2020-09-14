@@ -42,7 +42,7 @@ public class ImplementstrStr {
         // 成功匹配完终止条件：所有aim均成功匹配
         while(aimIndex < needle.length()){
             // 针对origin匹配完，但aim未匹配完情况处理 如 mississippi sippia
-            if(originIndex > haystack.length())
+            if(originIndex > haystack.length() - 1)
                 return -1;
             // 匹配则index均加1
             if (haystack.charAt(originIndex) == needle.charAt(aimIndex)){
@@ -71,6 +71,46 @@ public class ImplementstrStr {
 
         }
         return originIndex - aimIndex;
+    }
+
+    public int strStr_kmp(String haystack, String needle) {
+        //生成next数组
+        int[] next = getNexts(needle);
+        int j = 0;
+        //主循环，遍历主字符串
+        for (int i = 0; i < haystack.length(); i++){
+            while(j > 0 & haystack.charAt(i) != needle.charAt(j))
+                //遇到坏字符串，查询next数组并改变模拟串起点
+                j = next[j];
+            if (haystack.charAt(i) == needle.charAt(j))
+                j++;
+            if (j == needle.length())
+                //匹配成功，返回下标
+                return i - needle.length() + 1;
+        }
+        return -1;
+    }
+
+    /**
+     * 生成next数组
+     * @param needle 模拟串
+     * @return
+     */
+    private int[] getNexts(String needle){
+        int[] next = new int[needle.length()];
+        int j = 0;
+        for (int i = 2; i < needle.length(); ++i){
+            //从next[i+1]的求解回溯到next[j]
+            while (j != 0 && needle.charAt(j) != needle.charAt(i-1)){
+                j = next[j];
+            }
+            if(needle.charAt(j) == needle.charAt(i-1)) {
+                j++;
+            }
+            next[i] = j;
+
+        }
+        return next;
     }
 
 }
