@@ -34,14 +34,32 @@ package com.binaryTree;
  *     4   7
  */
 public class DeleteNodeTToBST {
+    /**
+     * 方法：递归
+     *
+     * 1、如果root.val < key，那么继续从它的右子树中寻找并删除；
+     * 2、如果root.val > key，那么继续从它的左子树中寻找并删除；
+     * 3、如果root.val == key，为表述方便，记要删除的节点为keyNode，分三种情况
+     * （1）若keyNode为叶子节点，那么删除后返回null给其父节点继承；
+     * （2）若keyNode只有左子树，那么删除后返回key.left给其父节点继承；
+     * （3）若keyNode只有右子树，那么删除后返回key.right给其父节点继承；
+     * （4）若keyNode左右子树都有，可以寻找在中序遍历过程中，keyNode的前驱或者后继，然后用前驱或者后继的值代替其节点值，在将其前驱或者后继删除；
+     * 4、如果最终root为null，说明找不到要删除的节点，应该返回原本的BST.
+     *
+     * @param root
+     * @param key
+     * @return
+     */
     public TreeNode deleteNode(TreeNode<Integer> root, int key) {
         //空值情况
         if (root == null)
             return null;
+        //当前节点值比删除的值大，向左子树找
         if (root.val > key) {
             root.left = deleteNode(root.left, key);
             return root;
         }
+        //当前节点值比删除的值小，向右子树找
         if (root.val < key) {
             root.right = deleteNode(root.right, key);
             return root;
@@ -53,15 +71,16 @@ public class DeleteNodeTToBST {
         //左子树为空，返回当前节点的右子树
         if(root.left == null)
             return root.right;
+        //寻找当前节点中序遍历的后继节点，即其右子树最左点
         TreeNode<Integer> mintree = root.right;
         while (mintree.left != null)
             mintree = mintree.left;
+        //用后继节点值替代当前节点的值
         root.val = mintree.val;
-        root.right = deleteNode(root.right);
+        //删除后继节点，即本次删除结束
+        root.right = deleteNode(root.right, root.val);
         return root;
     }
 
-    private TreeNode deleteNode(TreeNode right) {
-        return null;
-    }
+
 }
